@@ -1,0 +1,19 @@
+<ion-view view-title="Spell List" hide-nav-bar="true">
+	<ion-header-bar class="bar-dark">
+		<h1 class="title">Spellbook</h1>
+	</ion-header-bar>
+	<div class="bar bar-subheader item-input-inset bar-light">
+		<label for="" class="item-input-wrapper">
+			<i class="icon ion-search placeholder-icon"></i>
+			<input type="search" placeholder="Search" ng-model="query">
+		</label> 
+	</div>
+	<ion-content class="has-subheader">
+		<ion-list>
+			<ion-item ng-repeat="spell in spells | filter: query" href="#/detail/{{spell.shortname}}">
+				<h2>{{spell.name}}</h2>
+				<h4>{{spell.level}}</h4>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

@@ -23,9 +23,32 @@ angular.module('starter', ['ionic'])
 });
 })
 
+.config(function($stateProvider, $urlRouterProvider) {
+  $stateProvider
+    .state('list', {
+      url: '/list',
+      views: {
+        '' : {
+          templateUrl: 'templates/list.html',
+          controller: 'SpellController'
+        }
+      }
+    })
+    .state('detail', {
+      url: '/detail/:aId',
+      views: {
+        '' : {
+          templateUrl: 'templates/detail.html',
+          controller: 'SpellController'
+        }
+      }
+    })
+  $urlRouterProvider.otherwise('/list');
+})
 
-.controller('SpellController', ['$scope', '$http', function($scope, $http){
+.controller('SpellController', ['$scope', '$http', '$state', function($scope, $http, $state){
 	$http.get('js/data.json').success(function(data) {
 		$scope.spells = data;
+		$scope.whichspell = $state.params.aId;
 	});
 }]);

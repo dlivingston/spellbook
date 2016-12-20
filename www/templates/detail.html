@@ -1,0 +1,27 @@
+
+
+<ion-view view-title="Spell Details" hide-nav-bar="true">
+	<ion-header-bar class="bar-dark">
+	<a class="button icon-left ion-chevron-left button-clear button-small" href="#/list"> &nbsp; Back</a>
+	<h1 class="title">Details</h1>
+</ion-header-bar>
+	<ion-content>
+		<ion-list class="list-inset">
+			<ion-item class="item-text-wrap" ng-repeat="spell in spells | filter: { shortname: whichspell }">
+				<h1>{{ spell.name }} </h1>
+				<h3>
+					<em>{{ spell.level }} {{spell.school}} <span ng-if="spell.ritual === 'yes'">(ritual)</span></em>
+				</h3>
+				<p><strong>Casting Time: </strong>{{spell.casting_time}}</p>
+				<p><strong>Range: </strong> {{spell.range}} </p>
+				<p><strong>Components: </strong> {{spell.components}} <span ng-if="spell.material">({{spell.material}})</span> </p>
+				<p><strong>Duration: </strong> <span ng-if="spell.concentration === 'yes'">Concentration.</span> {{spell.duration}} </p>
+				<div ng-bind-html="spell.desc"></div>
+				<div ng-if="spell.higher_level">
+					<h4>At Higher Levels</h4>
+					<div ng-bind-html="spell.higher_level"></div>
+				</div>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>
